@@ -2,21 +2,29 @@
     <table class="table-condensed">
         <thead>
         <tr>
-            <th class="prev available" @click="prevMonth"><span/></th>
+            <th class="prev available" @click="prevMonth">
+              <slot name="arrow-prev">
+                <span/>
+              </slot>
+            </th>
             <th
                     v-if="showDropdowns"
                     :colspan="showWeekNumbers ? 6 : 5"
                     class="month"
             >
                 <div class="row mx-1">
-                    <select v-model="month" class="monthselect col">
+                    <select v-model="month" class="monthselect">
                         <option v-for="(m) in months" :key="m.value" :value="m.value">{{m.label}}</option>
                     </select>
-                    <input type="number" v-model="year" class="yearselect col" />
+                    <input type="number" v-model="year" class="yearselect" />
                 </div>
             </th>
             <th v-else colspan="5" class="month">{{monthName}} {{year}}</th>
-            <th class="next available" @click="nextMonth"><span/></th>
+            <th class="next available" @click="nextMonth">
+              <slot name="arrow-next">
+                <span/>
+              </slot>
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -116,6 +124,9 @@
         return this.dateFormat ? this.dateFormat(classes, date) : classes
 
       }
+    },
+    mounted(){
+      console.log("mount test")
     },
     computed: {
       monthName () {
