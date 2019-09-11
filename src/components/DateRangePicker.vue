@@ -377,7 +377,12 @@ export default {
     let endDate = this.dateRange.endDate || null;
 
     data.monthDate = startDate ? new Date(startDate) : new Date()
-    data.nextMonthDate = nextMonth(data.monthDate)
+    data.nextMonthDate = validateDateRange(nextMonth(data.monthDate), this.minDate, this.maxDate);
+
+    if (yearMonth(data.monthDate) === yearMonth(data.nextMonthDate)) {
+      data.monthDate = validateDateRange(prevMonth(data.monthDate), this.minDate, this.maxDate)
+    }    
+
     data.start = startDate ? new Date(startDate) : null
     if (this.singleDatePicker) {
       // ignore endDate for singleDatePicker

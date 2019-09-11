@@ -7,7 +7,7 @@
                 <date-range-picker
                         ref="picker"
                         :opens="opens"
-                        :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"
+                        :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"                        
                         :minDate="minDate" :maxDate="maxDate"
                         :singleDatePicker="singleDatePicker"
                         :timePicker="timePicker"
@@ -202,13 +202,11 @@
       //                    :locale-data="{ daysOfWeek: [ 'Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб' ] }"
       return {
         opens: 'center',
-        minDate: '2017-08-02',
-        maxDate: '2017-11-02',
-        // minDate: '',
-        // maxDate: '',
+        minDate: '',
+        maxDate: moment(new Date()),
         dateRange: {
-          startDate: '2017-09-10',
-          endDate: '2017-9-20',
+          startDate: null,
+          endDate: null,
         },
         show_ranges: true,
         singleDatePicker: false,
