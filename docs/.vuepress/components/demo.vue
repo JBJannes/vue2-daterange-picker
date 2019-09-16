@@ -203,7 +203,7 @@
       return {
         opens: 'center',
         minDate: '',
-        maxDate: moment(new Date()),
+        maxDate: new Date(),
         dateRange: {
           startDate: null,
           endDate: null,
