@@ -34,7 +34,7 @@
       >
         <div class="daterangepicker-header">
           <slot name="header-title" :startDate="start" :endDate="end"/>
-          <button type="button" aria-label="Close" class="close" @click="togglePicker(null, true)">&times;</button>
+          <button type="button" aria-label="Close" class="close" @click="togglePicker(false, true)">&times;</button>
         </div>
         <div class="calendars row no-gutters">
           <!--
