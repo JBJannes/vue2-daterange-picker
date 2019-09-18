@@ -600,7 +600,7 @@ export default {
     open (open) {
       if (isMobileSafari && document.body.clientWidth < 768) {
         if (open) {
-          disableBodyScroll(this.$refs.daterangepicker)
+          this.$nextTick(() => disableBodyScroll(this.$refs.daterangepicker))
         }
         else {
           clearAllBodyScrollLocks()
