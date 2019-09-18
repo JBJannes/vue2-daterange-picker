@@ -29,6 +29,7 @@
       <div
         class="daterangepicker dropdown-menu ltr"
         :class="pickerStyles"
+        ref="daterangepicker"
         v-if="open"
         v-on-clickaway="clickAway"
       >
@@ -196,6 +197,9 @@ import CalendarTime from './CalendarTime'
 import CalendarRanges from './CalendarRanges'
 import { localeData, nextMonth, prevMonth, validateDateRange, yearMonth } from './util'
 import { mixin as clickaway } from 'vue-clickaway'
+
+import { isMobileSafari } from 'mobile-device-detect'
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 export default {
   inheritAttrs: false,
@@ -606,6 +610,20 @@ export default {
     }
   },
   watch: {
+    /**
+     * Disable body scroll when user is on mobile safari and has a screen width of < 768
+     * ! iOS fixes, might need to review these methods
+     */
+    open (open) {
+      if (isMobileSafari && document.body.clientWidth < 768) {
+        if (open) {
+          disableBodyScroll(this.$refs.daterangepicker)
+        }
+        else {
+          clearAllBodyScrollLocks()
+        }
+      }
+    },
     minDate () {
       let dt = validateDateRange(this.monthDate, this.minDate || new Date(), this.maxDate)
       this.changeLeftMonth({ year: dt.getFullYear(), month: dt.getMonth() })

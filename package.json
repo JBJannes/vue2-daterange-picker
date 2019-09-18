@@ -25,6 +25,8 @@
     "unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "body-scroll-lock": "^2.6.4",
+    "mobile-device-detect": "^0.3.3",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
     "vue-clickaway": "^2.2.2"
