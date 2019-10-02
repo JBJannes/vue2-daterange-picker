@@ -353,10 +353,11 @@ export default {
         return {
           'Today': [moment(), moment()],
           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'This month': [moment().startOf('month'), moment().endOf('month')],
-          'This year': [moment().startOf('year'), moment().endOf('year')],
+          'This month': [moment().startOf('month'), moment()],
+          'This year': [moment().startOf('year'), moment()],
           'Last week': [moment().subtract(1, 'week').startOf('week'), moment().subtract(1, 'week').endOf('week')],
           'Last month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+          'Last year': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
         }
       }
     },
@@ -390,7 +391,12 @@ export default {
     let endDate = this.dateRange.endDate || null;
 
     data.monthDate = startDate ? new Date(startDate) : new Date()
-    data.nextMonthDate = nextMonth(data.monthDate)
+    data.nextMonthDate = validateDateRange(nextMonth(data.monthDate), this.minDate, this.maxDate);
+
+    if (yearMonth(data.monthDate) === yearMonth(data.nextMonthDate)) {
+      data.monthDate = validateDateRange(prevMonth(data.monthDate), this.minDate, this.maxDate)
+    }    
+
     data.start = startDate ? new Date(startDate) : null
     if (this.singleDatePicker) {
       // ignore endDate for singleDatePicker
@@ -523,7 +529,18 @@ export default {
     clickRange (value) {
       this.start = new Date(value[0])
       this.end = new Date(value[1])
-      this.monthDate = new Date(value[0])
+
+      const selectedMonth = value[0].month()
+      const selectedYear = value[0].year()
+
+      const selected = { month: selectedMonth, year: selectedYear}
+
+      if(moment().month() <= selectedMonth){
+        this.changeRightMonth(selected)
+      } else {
+        this.changeLeftMonth(selected)
+      }
+
       if (this.autoApply)
         this.clickedApply()
     },

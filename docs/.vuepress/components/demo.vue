@@ -7,7 +7,7 @@
                 <date-range-picker
                         ref="picker"
                         :opens="opens"
-                        :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"
+                        :locale-data="{ firstDay: 1, format: 'DD-MM-YYYY HH:mm:ss' }"                        
                         :minDate="minDate" :maxDate="maxDate"
                         :singleDatePicker="singleDatePicker"
                         :timePicker="timePicker"
@@ -204,13 +204,11 @@
       return {
         inline: true,
         opens: 'center',
-        minDate: '2018-01-01',
-        maxDate: '2021-12-31',
-        // minDate: '',
-        // maxDate: '',
+        minDate: '',
+        maxDate: new Date(),
         dateRange: {
-          startDate: '2019-10-21',
-          endDate: '2019-10-27',
+          startDate: null,
+          endDate: null,
         },
         show_ranges: true,
         singleDatePicker: false,
