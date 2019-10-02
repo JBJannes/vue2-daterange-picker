@@ -3,6 +3,7 @@
     <div
       :class="classes.wrapper"
       @click="togglePicker(null, true)"
+      v-if="!inline"
     >
       <!--
               Allows you to change the input which is visible before the picker opens
@@ -30,7 +31,7 @@
         class="daterangepicker dropdown-menu ltr"
         :class="pickerStyles"
         ref="daterangepicker"
-        v-if="open"
+        v-if="open || inline"
         v-on-clickaway="clickAway"
       >
         <div class="daterangepicker-header">
@@ -210,6 +211,14 @@ export default {
     event: 'update',
   },
   props: {
+    /**
+     * Show picker immediately inline
+     * @default false
+     */
+    inline: {
+      type: Boolean,
+      default: false
+    },
     /**
      * minimum date allowed to be selected
      * @default null
@@ -594,15 +603,22 @@ export default {
       return this.maxDate ? new Date(this.maxDate) : null
     },
     pickerStyles () {
-      return {
-        'show-calendar': this.open,
-        'show-ranges': !!this.ranges,
-        'show-weeknumbers': this.showWeekNumbers,
-        single: this.singleDatePicker,
-        opensright: this.opens === 'right',
-        opensleft: this.opens === 'left',
-        openscenter: this.opens === 'center',
-        linked: this.linkedCalendars
+      if (this.inline) {
+        return {
+          'show-calendar': this.inline,
+          'daterangepicker--show-inline': this.inline
+        }
+      } else {
+        return {
+          'show-calendar': this.open,
+          'show-ranges': !!this.ranges,
+          'show-weeknumbers': this.showWeekNumbers,
+          single: this.singleDatePicker,
+          opensright: this.opens === 'right',
+          opensleft: this.opens === 'left',
+          openscenter: this.opens === 'center',
+          linked: this.linkedCalendars
+        }
       }
     },
     isClear () {
@@ -678,9 +694,7 @@ export default {
   @media screen and (min-width: 768px) {
     width: 682px; 
   }
-}
 
-.daterangepicker {
   &.opensleft {
     top: 35px;
     right: 10px;
@@ -698,6 +712,17 @@ export default {
     top: 35px;
     left: 10px;
     right: auto;
+  }
+
+  &--show-inline {
+    position: relative;
+    margin: 0;
+    top: initial; right: initial; bottom: initial; left: initial;
+    transform: initial;
+
+    &:before, &:after {
+      display: none;
+    }
   }
 }
 

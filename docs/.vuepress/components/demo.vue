@@ -22,6 +22,7 @@
                         @clearInput="onClearInputClick"
                         :linkedCalendars="linkedCalendars"
                         :dateFormat="dateFormat"
+                        :inline="inline"
                 >
                     <div slot="input" slot-scope="picker" style="min-width: 350px;">
                         {{ picker.startDate | date }} - {{ picker.endDate | date }}
@@ -201,6 +202,7 @@
     data () {
       //                    :locale-data="{ daysOfWeek: [ 'Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб' ] }"
       return {
+        inline: true,
         opens: 'center',
         minDate: '',
         maxDate: new Date(),
