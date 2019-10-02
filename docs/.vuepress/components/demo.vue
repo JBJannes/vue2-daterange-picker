@@ -22,6 +22,7 @@
                         @clearInput="onClearInputClick"
                         :linkedCalendars="linkedCalendars"
                         :dateFormat="dateFormat"
+                        :inline="inline"
                 >
                     <div slot="input" slot-scope="picker" style="min-width: 350px;">
                         {{ picker.startDate | date }} - {{ picker.endDate | date }}
@@ -201,14 +202,15 @@
     data () {
       //                    :locale-data="{ daysOfWeek: [ 'Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб' ] }"
       return {
+        inline: true,
         opens: 'center',
-        minDate: '2017-08-02',
-        maxDate: '2017-11-02',
+        minDate: '2018-01-01',
+        maxDate: '2021-12-31',
         // minDate: '',
         // maxDate: '',
         dateRange: {
-          startDate: '2017-09-10',
-          endDate: '2017-9-20',
+          startDate: '2019-10-21',
+          endDate: '2019-10-27',
         },
         show_ranges: true,
         singleDatePicker: false,
