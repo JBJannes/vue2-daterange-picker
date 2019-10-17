@@ -43,7 +43,7 @@ const localeData = (options) => {
         firstDay: moment.localeData().firstDayOfWeek()
     }
 
-    return {...default_locale, ...options }
+    return Object.assign({}, default_locale, options)
 }
 
 const yearMonth = (date) => {
