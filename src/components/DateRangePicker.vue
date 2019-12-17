@@ -132,11 +132,10 @@
               </div>
             </div>
 
-            <div class="time-area" :class="classes.wrapperTimePicker">
+            <div v-if="timePicker" class="time-area" :class="classes.wrapperTimePicker">
               <div class="time-from">
                 <slot name="prepend-from" />
                 <calendar-time
-                  v-if="timePicker"
                   @update="onUpdateStartTime"
                   :miniute-increment="timePickerIncrement"
                   :hour24="timePicker24Hour"
@@ -147,7 +146,6 @@
               <div class="time-to">
                 <slot name="prepend-to" />
                 <calendar-time
-                  v-if="timePicker"
                   @update="onUpdateEndTime"
                   :miniute-increment="timePickerIncrement"
                   :hour24="timePicker24Hour"
