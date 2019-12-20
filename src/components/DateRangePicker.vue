@@ -430,7 +430,7 @@ export default {
       this.monthDate = newDate
       if (this.linkedCalendars || (yearMonth(this.monthDate) >= yearMonth(this.nextMonthDate))) {
         this.nextMonthDate = validateDateRange(nextMonth(newDate), this.minDate, this.maxDate);
-        if (yearMonth(this.monthDate) === yearMonth(this.nextMonthDate)) {
+        if (yearMonth(this.monthDate) === yearMonth(this.nextMonthDate) && !this.singleDatePicker) {
           this.monthDate = validateDateRange(prevMonth(this.monthDate), this.minDate, this.maxDate)
         }
       }
