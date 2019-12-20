@@ -388,7 +388,7 @@ export default {
     data.monthDate = startDate ? new Date(startDate) : new Date()
     data.nextMonthDate = validateDateRange(nextMonth(data.monthDate), this.minDate, this.maxDate);
 
-    if (yearMonth(data.monthDate) === yearMonth(data.nextMonthDate)) {
+    if (yearMonth(data.monthDate) === yearMonth(data.nextMonthDate) && !this.singleDatePicker) {
       data.monthDate = validateDateRange(prevMonth(data.monthDate), this.minDate, this.maxDate)
     }    
 
@@ -628,6 +628,17 @@ export default {
     maxDate () {
       let dt = validateDateRange(this.nextMonthDate, this.minDate, this.maxDate || new Date())
       this.changeRightMonth({ year: dt.getFullYear(), month: dt.getMonth() })
+    },
+    singleDatePicker (singleDatePicker) {
+      if(singleDatePicker) {
+        this.monthDate = validateDateRange(nextMonth(this.monthDate), this.minDate, this.maxDate)
+      } else {
+        this.nextMonthDate = validateDateRange(nextMonth(this.monthDate), this.minDate, this.maxDate);
+
+        if (yearMonth(this.monthDate) === yearMonth(this.nextMonthDate) && !singleDatePicker) {
+          this.monthDate = validateDateRange(prevMonth(this.monthDate), this.minDate, this.maxDate)
+        }      
+      }
     },
     'dateRange.startDate' (value) {
       this.start = (!!value && !this.isClear) ? new Date(value) : null
