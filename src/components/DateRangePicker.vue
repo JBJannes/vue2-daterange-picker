@@ -530,7 +530,7 @@ export default {
 
       const selected = { month: selectedMonth, year: selectedYear}
 
-      if(moment().month() <= selectedMonth){
+      if(moment().month() <= selectedMonth && !this.singleDatePicker){
         this.changeRightMonth(selected)
       } else {
         this.changeLeftMonth(selected)
