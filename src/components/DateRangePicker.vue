@@ -709,8 +709,8 @@ export default {
   &--show-inline {
     position: relative;
     margin: 0;
-    top: initial; right: initial; bottom: initial; left: initial;
-    transform: initial;
+    top: 0; right: initial; bottom: initial; left: 0;
+    transform: none;
 
     &:before, &:after {
       display: none;
