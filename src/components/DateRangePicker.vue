@@ -684,7 +684,7 @@ export default {
   width: auto;
 
   @media screen and (min-width: 768px) {
-    width: 682px; 
+    width: 660px; 
   }
 
   &.opensleft {

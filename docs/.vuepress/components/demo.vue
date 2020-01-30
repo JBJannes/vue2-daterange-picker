@@ -202,7 +202,7 @@
     data () {
       //                    :locale-data="{ daysOfWeek: [ 'Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб' ] }"
       return {
-        inline: true,
+        inline: false,
         opens: 'center',
         minDate: '',
         maxDate: new Date(),
