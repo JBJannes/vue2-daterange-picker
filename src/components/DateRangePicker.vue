@@ -522,6 +522,8 @@ export default {
       }
     },
     clickRange (value) {
+      this.in_selection = false;
+
       this.start = new Date(value[0])
       this.end = new Date(value[1])
 
